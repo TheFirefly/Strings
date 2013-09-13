@@ -41,13 +41,18 @@ public class Strings {
 	}
 
 	private static String captainCrunch(String s) {
-		s = s.toLowerCase();
 		String code = new String();
 		for (int i = 0 ; i < s.length() ; i++) {
 			char c = s.charAt(i);
-			if (c + 13 > 'z') {
+			char a = 'a';
+			char z = 'z';
+			if (c <= 90) {
+				a = 'A';
+				z = 'Z';
+			}
+			if (c + 13 > z) {
 
-				code += String.valueOf((char)('a' + (12 - ('z'-c))));
+				code += String.valueOf((char)(a + (12 - (z-c))));
 			} else {
 				code += String.valueOf((char)(c + 13));
 			}
