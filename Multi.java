@@ -103,7 +103,21 @@ public class Multi {
 		return sub;
 	}
 
+	private static boolean isSquareMatrix(int[][] a) {
+		for (int i = 0 ; i < a.length ; i++) {
+			if (a.length != a[i].length) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	private static int determinant(int[][] a) {
+		if (!isSquareMatrix(a)) {
+			throw new IllegalArgumentException("Two-dimensional array given must be square!");
+		}
+
 		int determinant = 0;
 		int multiplyFactor = 1;
 		int size = a.length;
