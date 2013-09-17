@@ -1,13 +1,18 @@
+import java.util.Random;
+
 public class Multi {
 	
+	private static Random r = new Random(3500);
+
 	public static void main(String[] args) {
 		int[][] a = { {1, 2, 3, 4, 5}, 
 					  {6, 7, 8, 9, 10}, 
 					  {11, 12, 13, 14, 15} };
 
-		int[][] b = { {4, 5, 5},
-					  {6, 7, 8},
-					  {9, 10, 11} }; //Should be 3
+		int[][] b = { {3, 4, 4, 4},
+					  {5, 6, 7, 7},
+					  {8, 9, 10, 11},
+					  {12, 13, 14, 15} }; //Should be 3
 
 		int[] c = {1, 2, 3, 4, 5, 6};
 
@@ -22,8 +27,21 @@ public class Multi {
 		// print(snakeDraft(10, 3));
 		// System.out.println("Rectangularization of c: ");
 		// print(rectangularize(c, 3, 2));
-		System.out.println("Determinant of b: " + determinant(b));
+		int size = 10;
+		System.out.println("Determinant of random matrix of size " + size + ": " + determinant(makeRandomMatrix(size, 20)));
 
+	}
+
+	private static int[][] makeRandomMatrix(int size, int range) {
+		int[][] a = new int[size][size];
+
+		for (int i = 0 ; i < size ; i++) {
+			for (int j = 0 ; j < size ; j++) {
+				a[i][j] = r.nextInt(range + 1);
+			}
+		}
+
+		return a;
 	}
 
 	private static void print(int[][] a) {
