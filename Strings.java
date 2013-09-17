@@ -7,7 +7,9 @@ public class Strings {
 		//System.out.println("Alpp is Abecedarian: " + isAbecedarian("Alpp"));
 		//System.out.println("Ssaabb is a dupledrome: " + isDupledrome("Ssaabb"));
 		String s = "Test";
-		System.out.println(s + ": " + captainCrunch(s));
+		String a = "Grfg";
+		//System.out.println(s + ": " + encodeCaptainCrunch(s, 13));
+		System.out.println(a + ": " + encodeCaptainCrunch(a, 13));
 	}
 
 	private static boolean isAbecedarian(String s) {
@@ -40,7 +42,7 @@ public class Strings {
 		return true;
 	}
 
-	private static String captainCrunch(String s) {
+	private static String encodeCaptainCrunch(String s, int offset) {
 		String code = new String();
 		for (int i = 0 ; i < s.length() ; i++) {
 			char c = s.charAt(i);
@@ -50,11 +52,30 @@ public class Strings {
 				a = 'A';
 				z = 'Z';
 			}
-			if (c + 13 > z) {
-
-				code += String.valueOf((char)(a + (12 - (z-c))));
+			if (c + offset > z) {
+				code += String.valueOf((char)(a + (offset - (z-c) - 1)));
 			} else {
-				code += String.valueOf((char)(c + 13));
+				code += String.valueOf((char)(c + offset));
+			}
+		}
+
+		return code;
+	}
+
+	private static String decodeCaptainCrunch(String s, int offset) {
+		String code = new String();
+		for (int i = 0 ; i < s.length() ; i++) {
+			char c = s.charAt(i);
+			char a = 'a';
+			char z = 'z';
+			if (c <= 90) {
+				a = 'A';
+				z = 'Z';
+			}
+			if (c - offset < a) {
+				code += String.valueOf((char)(z - (offset - (c - a) - 1)));
+			} else {
+				code += String.valueOf((char)(c - offset));
 			}
 		}
 
